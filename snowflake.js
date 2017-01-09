@@ -8,7 +8,7 @@ class Snowflake {
 		// radius will always been between 2 and 6
 		this.radius = Math.floor(Math.random() * 100 / 20) + 2;
 		// velocity in the x direction is positive
-		this.xVelocity = 1;
+		this.xVelocity = effects["wind"] ? this.calculateXVelocity() : 0;
 		// velocity in the y direction varies based on snowflake size
 		this.yVelocity = this.calculateYVelocity();
 		// random coordinates inside the container
@@ -17,10 +17,21 @@ class Snowflake {
 		this.shimmering = effects["shimmering"];
 	}
 
+	calculateXVelocity () {
+		// larger snowflakes move faster than smaller snowflakes
+		// this creates an illusion of distance
+		return this.radius / 1.5;
+	}
+
 	calculateYVelocity () {
-		// larger snowflakes fall faster than smaller snowflakes
+		// larger snowflakes move faster than smaller snowflakes
 		// this creates an illusion of distance
 		return this.radius / 2;
+	}
+
+	newXPosition () {
+		// moves the snowflake across the canvas by the velocity of x
+		this.coordinates[0] += this.xVelocity;
 	}
 
 	newYPosition () {
@@ -38,6 +49,10 @@ class Snowflake {
 	}
 
 	recycle (stage) {
+		// moves the snowflake to the left of the canvas once it reaches the rightmost position
+		if (this.coordinates[0] > stage.canvas.width) {
+			this.coordinates[0] = 0;
+		}
 		// moves the snowflake to the top of the canvas once it reaches the bottom
 		if (this.coordinates[1] > stage.canvas.height) {
 			this.coordinates[1] = 0;
@@ -50,6 +65,8 @@ class Snowflake {
 		stage.ctx.arc(this.coordinates[0],this.coordinates[1],this.radius,0,2 * Math.PI,false);
 		stage.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
 		stage.ctx.fill();
+		// change the X position
+		this.newXPosition();
 		// change the Y position
 		this.newYPosition();
 		// add the shimmering effect if it is desired
