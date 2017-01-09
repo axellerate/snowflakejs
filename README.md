@@ -6,22 +6,6 @@ Snowflake.js is a small, lightweight javascript library that allows you to add a
 
 Clone this repository and copy `snowflake.js` into your project directory. Afterwards, follow the steps below.
 
-##Demo
-
-<canvas id="snowstorm-demo" width="1000" height="500" style="background: #000;"></canvas>
-
-<script type="text/javascript" src="snowflake.js"></script>
-<script type="text/javascript">
-	const snowstorm = new Snowstorm("snowstorm-demo", 500, true);
-	snowstorm.start();
-</script>
-
-## Usage
-
-1. Import Snowflake.js `<script type="text/javascript" src="snowflake.js"></script>`
-2. Create a canvas of any size on your page
-`<canvas id="snowstorm-demo" width="1000" height="500" style="background: #000;"></canvas>`
-
 3. Create a new Snowstorm and tie it to your canvas via ID
 Example:
 `const snowstorm = new Snowstorm("snowstorm-demo", 500, true);`
