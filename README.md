@@ -2,6 +2,10 @@
 
 Snowflake.js is a small, lightweight javascript library that allows you to add a simple snowflake effect on your website.
 
+## Demo
+
+https://jsfiddle.net/z4109b1w/
+
 ## Installation
 
 Clone this repository and copy `snowflake.js` into your project directory. Afterwards, follow the steps below.
