@@ -4,7 +4,7 @@ Snowflake.js is a small, lightweight javascript library that allows you to add a
 
 ## Demo
 
-https://jsfiddle.net/z4109b1w/
+https://jsfiddle.net/6w25raag/
 
 ## Installation
 
