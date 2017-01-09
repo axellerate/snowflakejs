@@ -23,8 +23,8 @@ Example:
 The Snowstorm class takes 3 arguments. They are: 
 `(canvasId, numberOfSnowflakes, shimmeringEffect)`
 ```
-4. Call the start function `snowstorm.start()` to begin the animation
-5. Call the stop function `snowstorm.stop()` to stop the animation
+- Call the start function `snowstorm.start()` to begin the animation
+- Call the stop function `snowstorm.stop()` to stop the animation
 
 Full Example:
 ```
