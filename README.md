@@ -8,7 +8,6 @@ Clone this repository and copy `snowflake.js` into your project directory. After
 
 ##Demo
 
-```
 <canvas id="snowstorm-demo" width="1000" height="500" style="background: #000;"></canvas>
 
 <script type="text/javascript" src="snowflake.js"></script>
@@ -16,7 +15,6 @@ Clone this repository and copy `snowflake.js` into your project directory. After
 	const snowstorm = new Snowstorm("snowstorm-demo", 500, true);
 	snowstorm.start();
 </script>
-```
 
 ## Usage
 
