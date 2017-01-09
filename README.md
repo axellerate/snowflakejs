@@ -17,7 +17,6 @@ Clone this repository and copy `snowflake.js` into your project directory. After
 `<canvas id="snowstorm-demo" width="1000" height="500" style="background: #000;"></canvas>`
 
 3. Create a new Snowstorm and tie it to your canvas via `id`
-
 Example:
 `const snowstorm = new Snowstorm("snowstorm-demo", 500, true);`
 The Snowstorm class takes 3 arguments. They are: 
