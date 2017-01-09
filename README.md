@@ -19,9 +19,10 @@ Clone this repository and copy `snowflake.js` into your project directory. After
 3. Create a new Snowstorm and tie it to your canvas via `id`
 ```
 Example:
-`const snowstorm = new Snowstorm("snowstorm-demo", 500, true);`
+`const snowstorm = new Snowstorm("snowstorm-demo",500,{"shimmering":true});`
 The Snowstorm class takes 3 arguments. They are: 
-`(canvasId, numberOfSnowflakes, shimmeringEffect)`
+`(canvasId, numberOfSnowflakes, effectsObject)`
+`Effects object: {"shimmering":true} // shimmering is the only supported effect at present`
 ```
 - Call the start function `snowstorm.start()` to begin the animation
 - Call the stop function `snowstorm.stop()` to stop the animation

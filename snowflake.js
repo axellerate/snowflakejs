@@ -4,7 +4,7 @@
 
 class Snowflake {
 	
-	constructor (x,y, shimmering) {
+	constructor (x,y,effects) {
 		// radius will always been between 2 and 6
 		this.radius = Math.floor(Math.random() * 100 / 20) + 2;
 		// velocity in the x direction is positive
@@ -14,7 +14,7 @@ class Snowflake {
 		// random coordinates inside the container
 		this.coordinates = [x,y];
 		// shimmering effect (small side-to-side movements)
-		this.shimmering = shimmering;
+		this.shimmering = effects["shimmering"];
 	}
 
 	calculateYVelocity () {
@@ -26,6 +26,10 @@ class Snowflake {
 	newYPosition () {
 		// moves the snowflake downward on the canvas by the velocity of y
 		this.coordinates[1] += this.yVelocity;
+	}
+
+	setShimmer () {
+		this.shimmering = true;
 	}
 
 	shimmer () {
@@ -43,7 +47,7 @@ class Snowflake {
 	animate (stage) {
 		// draw the snowflake
 		stage.ctx.beginPath();
-		stage.ctx.arc(this.coordinates[0], this.coordinates[1], this.radius, 0, 2 * Math.PI, false);
+		stage.ctx.arc(this.coordinates[0],this.coordinates[1],this.radius,0,2 * Math.PI,false);
 		stage.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
 		stage.ctx.fill();
 		// change the Y position
@@ -61,7 +65,7 @@ class Snowflake {
 class Snowstorm {
 
 	// creates a snowstorm with a certain number of snowflakes
-	constructor (canvasId,numberOfSnowflakes, shimmering) {
+	constructor (canvasId,numberOfSnowflakes,effects) {
 
 		// instantiate the stage (i.e. the canvas)
 		this.stage = new Stage(canvasId, numberOfSnowflakes);
@@ -74,7 +78,7 @@ class Snowstorm {
 			var y = Math.floor(Math.random() * this.stage.canvas.height);
 			
 			// create snowflake object and add it to the storm
-			this.snowflakes.push(new Snowflake(x,y, shimmering));
+			this.snowflakes.push(new Snowflake(x,y,effects));
 		}
 	}
 
@@ -87,7 +91,7 @@ class Snowstorm {
 		// start an interval to animate each snowflake every 24 milliseconds
 		this.animationInterval = setInterval(() => {
 			// clear the canvas everytime we animate all of the snowflakes
-			this.stage.ctx.clearRect(0, 0, this.stage.canvas.width, this.stage.canvas.height);
+			this.stage.ctx.clearRect(0,0,this.stage.canvas.width,this.stage.canvas.height);
 			// animate every individual snowflake
 			this.snowflakes.forEach((item,index,array) => {
 				item.animate(this.stage);
@@ -116,7 +120,7 @@ class Stage {
 
 		// make the canvas transparent
 		this.ctx.fillStyle = "transparent";
-		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+		this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
 	}
 
 }
