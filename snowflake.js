@@ -5,10 +5,11 @@
 class Snowflake {
 	
 	constructor (x,y,effects) {
+		this.effects = effects;
 		// radius will always been between 2 and 6
 		this.radius = Math.floor(Math.random() * 100 / 20) + 2;
 		// velocity in the x direction is positive
-		this.xVelocity = effects["wind"] ? this.calculateXVelocity() : 0;
+		this.xVelocity = this.calculateXVelocity();
 		// velocity in the y direction varies based on snowflake size
 		this.yVelocity = this.calculateYVelocity();
 		// random coordinates inside the container
@@ -20,7 +21,7 @@ class Snowflake {
 	calculateXVelocity () {
 		// larger snowflakes move faster than smaller snowflakes
 		// this creates an illusion of distance
-		return this.radius / 1.5;
+		return this.radius * this.effects["windSpeed"];
 	}
 
 	calculateYVelocity () {
@@ -50,8 +51,14 @@ class Snowflake {
 
 	recycle (stage) {
 		// moves the snowflake to the left of the canvas once it reaches the rightmost position
-		if (this.coordinates[0] > stage.canvas.width) {
+		// this is for positive windSpeed directions
+		if (this.coordinates[0] > stage.canvas.width && this.calculateXVelocity() > 0) {
 			this.coordinates[0] = 0;
+		}
+		// moves the snowflake to the right of the canvas once it reaches the leftmost position
+		// this is for negative windSpeed directions
+		if (this.coordinates[0] < 0 && this.calculateXVelocity() < 0) {
+			this.coordinates[0] = stage.canvas.width;
 		}
 		// moves the snowflake to the top of the canvas once it reaches the bottom
 		if (this.coordinates[1] > stage.canvas.height) {
