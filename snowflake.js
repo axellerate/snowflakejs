@@ -121,11 +121,14 @@ class Snowstorm {
 		this.started = false;
 	}
   
-  	_run() {
+  _run() {
+		
 		if (!this.started) {
 			return;
 		}
 
+		// requestAnimationFrame is used instead of setInterval because of browser
+		// inconsistencies when it comes to constant framerates
 		window.requestAnimationFrame(() => {
 			this.stage.ctx.clearRect(0,0,this.stage.canvas.width,this.stage.canvas.height);
 
@@ -136,7 +139,7 @@ class Snowstorm {
 
 			window.requestAnimationFrame(() => this._run());
 		});  
-  	}
+  }
 
 }
 
