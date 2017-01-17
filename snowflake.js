@@ -112,21 +112,31 @@ class Snowstorm {
 	}
 
 	start () {
-		// start an interval to animate each snowflake every 24 milliseconds
-		this.animationInterval = setInterval(() => {
-			// clear the canvas everytime we animate all of the snowflakes
-			this.stage.ctx.clearRect(0,0,this.stage.canvas.width,this.stage.canvas.height);
-			// animate every individual snowflake
-			this.snowflakes.forEach((item,index,array) => {
-				item.animate(this.stage);
-			});
-		}, 24);
+  		this.started = true;
+  	
+    		this._run();
 	}
 
 	stop () {
-		// stops the animation effect
-		clearInterval(this.animationInterval);
+		this.started = false;
 	}
+  
+  	_run() {
+		if (!this.started) {
+			return;
+		}
+
+		window.requestAnimationFrame(() => {
+			this.stage.ctx.clearRect(0,0,this.stage.canvas.width,this.stage.canvas.height);
+
+			// animate every individual snowflake
+			for (let snowflake of this.snowflakes) {
+				snowflake.animate(this.stage);
+			}
+
+			window.requestAnimationFrame(() => this._run());
+		});  
+  	}
 
 }
 
